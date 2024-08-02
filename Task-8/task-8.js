@@ -16,7 +16,7 @@ fs.stat(filePath, (err, stats) => {
   console.log(`Current Permissions: ${stats.mode}`);
 });
 
-fs.chmod(filePath, 0o444, (err) => {
+fs.chmod(filePath, fs.constants.S_IRUSR | fs.constants.S_IRGRP | fs.constants.S_IROTH, (err) => {
   if (err) {
     console.error(`Error changing file permissions: ${err.message}`);
     return;

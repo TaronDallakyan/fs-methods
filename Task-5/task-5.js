@@ -14,14 +14,15 @@ const watcher = fs.watch(watchDir, (eventType, filename) => {
     fs.stat(`${watchDir}/${filename}`, (err, stats) => {
       if (err && err.code === "ENOENT") {
         console.log(`File Deleted: ${filename}`);
-      } else if (err) {
+      }
+      if (err) {
         console.error("An error occurred:", err);
-      } else {
-        if (eventType === "rename") {
-          console.log(`File Added/Modified: ${filename}`);
-        } else if (eventType === "change") {
-          console.log(`File Modified: ${filename}`);
-        }
+      }
+      if (eventType === "rename") {
+        console.log(`File Added/Modified: ${filename}`);
+      }
+      if (eventType === "change") {
+        console.log(`File Modified: ${filename}`);
       }
     });
   } else {
